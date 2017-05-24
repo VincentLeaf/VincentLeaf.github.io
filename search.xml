@@ -38,14 +38,14 @@
       
         <categories>
             
-            <category> 学习 </category>
+            <category> 工具 </category>
             
         </categories>
         
         
         <tags>
             
-            <tag> ios, workflow </tag>
+            <tag> workflow </tag>
             
         </tags>
         
@@ -63,14 +63,26 @@
   
     
     <entry>
+      <title><![CDATA[links]]></title>
+      <url>/links/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[About]]></title>
       <url>/about/index.html</url>
       <content type="html"></content>
     </entry>
     
     <entry>
-      <title><![CDATA[links]]></title>
-      <url>/links/index.html</url>
+      <title><![CDATA[标签云]]></title>
+      <url>/tags/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[图库]]></title>
+      <url>/gallery/index.html</url>
       <content type="html"></content>
     </entry>
     
