@@ -19,7 +19,7 @@
 <p><img src="http://i1.piimg.com/588926/c683a8e8fc6ee3c9.png" alt="spilit"></p>
 <ul>
 <li>split text有几种模式可以选择，最让我开心的是可以每个字母都分割成list中的一个值，果断选择这个。</li>
-<li>然后就加入用户录入的部分了，没什么复杂的东西，按常规来就好了。唯一需要注意的就是加入一些逻辑判断（判断用户输入的值是否在答案中有），防止出现index out of range的情况。</li>
+<li>然后就加入用户录入的部分了，没什么复杂的东西，按常规来就好了。唯一需要注意的就是加入一些逻辑判断（判断用户输入的值是否在答案中），防止出现index out of range的情况。</li>
 </ul>
 <blockquote>
 <p><img src="http://i1.piimg.com/588926/f42d3d2edc3d0d21.png" alt="in"><br>注意顶端的repeat, 在我实际使用的时候发现每次查的时候都要点一下workflow，这样的操作就过于繁琐，于是我便加入了这个repeat这样我在不需要退出workflow的情况下就可以继续查下一个题了。</p>
