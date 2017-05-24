@@ -14,11 +14,11 @@
 </ul>
 <p><img src="http://i1.piimg.com/588926/cb025bb2d863d2cb.png" alt="answers"></p>
 <ul>
-<li>在workflow里选择流程时我实际上遇到了一下小困难，dictionay或者list的格式都是需要一个一个添加值的，这样的话手都会按抽筋吧，而且效率低下。翻了一遍之后发现了一个满足我需求的流程：split text.</li>
-<li><p><img src="http://i1.piimg.com/588926/c683a8e8fc6ee3c9.png" alt="spilit"></p>
-</li>
-<li><p>split text有几种模式可以选择，最让我开心的是可以每个字母都分割成list中的一个值，果断选择这个。</p>
-</li>
+<li>在workflow里选择流程时我实际上遇到了一下小困难，dictionary或者list的格式都是需要一个一个添加值的，这样的话手都会按抽筋吧，而且效率低下。翻了一遍之后发现了一个满足我需求的流程：split text.</li>
+</ul>
+<p><img src="http://i1.piimg.com/588926/c683a8e8fc6ee3c9.png" alt="spilit"></p>
+<ul>
+<li>split text有几种模式可以选择，最让我开心的是可以每个字母都分割成list中的一个值，果断选择这个。</li>
 <li>然后就加入用户录入的部分了，没什么复杂的东西，按常规来就好了。唯一需要注意的就是加入一些逻辑判断（判断用户输入的值是否在答案中有），防止出现index out of range的情况。</li>
 </ul>
 <blockquote>
@@ -26,7 +26,7 @@
 </blockquote>
 <p><img src="http://i4.buimg.com/588926/0241d284ac7ef852.png" alt="if"></p>
 <ul>
-<li>最后再将答案以alert的形式显示在用户的屏幕上。</li>
+<li>将用户输入的值传给list, 查找所处index的值。最后再将查询到的值（答案）以alert的形式显示在用户的屏幕上。</li>
 </ul>
 <p><img src="http://i1.piimg.com/588926/3ab0aab1db97273f.png" alt=""></p>
 <ul>
