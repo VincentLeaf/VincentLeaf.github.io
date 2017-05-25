@@ -63,6 +63,12 @@
   
     
     <entry>
+      <title><![CDATA[标签云]]></title>
+      <url>/tags/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[About]]></title>
       <url>/about/index.html</url>
       <content type="html"></content>
@@ -77,12 +83,6 @@
     <entry>
       <title><![CDATA[links]]></title>
       <url>/links/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[标签云]]></title>
-      <url>/tags/index.html</url>
       <content type="html"></content>
     </entry>
     
