@@ -63,14 +63,14 @@
   
     
     <entry>
-      <title><![CDATA[图库]]></title>
-      <url>/gallery/index.html</url>
+      <title><![CDATA[About]]></title>
+      <url>/about/index.html</url>
       <content type="html"></content>
     </entry>
     
     <entry>
-      <title><![CDATA[About]]></title>
-      <url>/about/index.html</url>
+      <title><![CDATA[图库]]></title>
+      <url>/gallery/index.html</url>
       <content type="html"></content>
     </entry>
     
