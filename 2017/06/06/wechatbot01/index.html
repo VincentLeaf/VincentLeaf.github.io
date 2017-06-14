@@ -5,7 +5,7 @@
     
     <title>
         
-            标签: workflow | 
+            使用itchat库搭建一个微信聊天机器人 | 
         
         追了么
     </title>
@@ -31,7 +31,7 @@
     <meta name="theme-color" content="#0097A7">
     <meta name="author" content="Vincent Li">
     <meta name="description" content="Well... It&#39;s actually VL&#39;s Blog.">
-    <meta name="keywords" content="追了么">
+    <meta name="keywords" content="追了么,wechat">
 
     <!-- Favicons -->
     <link rel="icon shortcut" type="image/ico" href="/img/avator.jpg">
@@ -57,9 +57,9 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="http://zhuile.me">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="标签: workflow | 追了么">
+    <meta property="og:title" content="使用itchat库搭建一个微信聊天机器人 | 追了么">
     <meta property="og:description" content="Well... It&#39;s actually VL&#39;s Blog.">
-    
+    <meta property="og:article:tag" content="wechat"> 
 
     <!--[if lte IE 9]>
         <link rel="stylesheet" href="/css/ie-blocker.css">
@@ -264,103 +264,317 @@
                         </button>
                     
 
-                    <!-- Index Module -->
-<div class="material-index mdl-grid">
-    
-    <div class="locate-thumbnail-symbol"></div>
+                    <!-- Post TOC -->
 
-    <!-- Pin on top -->
     
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
 
-    <!-- Normal Post -->
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#使用itchat库搭建一个微信聊天机器人"><span class="post-toc-number">1.</span> <span class="post-toc-text">使用itchat库搭建一个微信聊天机器人</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#itchat接口介绍"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">itchat接口介绍</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#登陆方法itchat-login"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">登陆方法itchat.login()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#获取消息-itchat-msg-register-TEXT"><span class="post-toc-number">1.2.2.</span> <span class="post-toc-text">获取消息@itchat.msg_register(TEXT)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#消息内容msg-39-Content-39"><span class="post-toc-number">1.2.3.</span> <span class="post-toc-text">消息内容msg['Content']</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#发送方法itchat-send-msg-ToUserName"><span class="post-toc-number">1.2.4.</span> <span class="post-toc-text">发送方法itchat.send(msg, ToUserName)</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#自动回复机器人"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">自动回复机器人</span></a></li></ol></li></ol>
+
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
     
         <!-- Custom Thumbnail -->
-        <div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50 lazy" data-original="http://i1.piimg.com/588926/04c2ad139d9b5891.jpg">
+        <div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url(http://oqi5hmt36.bkt.clouddn.com/17-6-6/11425308.jpg)">
+    
+            <p class="article-headline-p">
+                使用itchat库搭建一个微信聊天机器人
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/touxiang.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Vincent Li</strong>
+        <span>6月 06, 2017</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
     
 
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2017/05/24/anscheck/">在workflow中速查练习答案</a></p>
-    </div>
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/wechat/">wechat</a>
+    </ul>
+    
 
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            
-这几天在刷SAT练习题时发现在查答案的时候总是要把书翻来翻去，看半天还没找到自己所需要的答案，于是便脑洞一开，设计了这个workflow流程。
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
 
+    
 
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2017/05/24/anscheck/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/touxiang.png" width="44px" height="44px" alt="Vincent Li's avatar">
-            </div>
-            <div>
-                <strong>Vincent Li</strong>
-                <span>5月 24, 2017</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                <a class="post_category-link" href="/categories/工具/">工具</a>
-            </span>
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=使用itchat库搭建一个微信聊天机器人&url=http://zhuile.me//2017/06/06/wechatbot01/index.html&pic=&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
 
-            
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=使用itchat库搭建一个微信聊天机器人&url=http://zhuile.me//2017/06/06/wechatbot01/index.html&via=Vincent Li" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
 
-            
-                <!-- Comment Number -->
-                &nbsp;|&nbsp;
-                <span class="post_entry-comment" >
-                        <span id = "sourceId::2017/05/24/anscheck/" class = "cy_cmt_count" ></span>条评论
-                </span>
-            
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://zhuile.me//2017/06/06/wechatbot01/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
 
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://zhuile.me//2017/06/06/wechatbot01/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=追了么&title=使用itchat库搭建一个微信聊天机器人&summary=Well... It&#39;s actually VL&#39;s Blog.&pics=http://zhuile.me/img/avator.jpg&url=http://zhuile.me/2017/06/06/wechatbot01/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 QQ
+            </li>
+        </a>
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
 </div>
 
-            
-            
-        
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
+        <h1 id="使用itchat库搭建一个微信聊天机器人"><a href="#使用itchat库搭建一个微信聊天机器人" class="headerlink" title="使用itchat库搭建一个微信聊天机器人"></a>使用itchat库搭建一个微信聊天机器人</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>制作这个机器人的灵感实际上是因为我实在是懒得去一条条的回一些很简单没有意义的微信…(逃，在以下的介绍中我将概述如何使用itchat在python中接收并发送信息，并使用图灵机器人接口完成一个能自动聊天的机器人。</p>
+<p>##插件安装</p>
+<ul>
+<li>itchat是一个python的库，我们使用这个库来获得微信中所收到的消息和发送自定义消息。更多有关这个库的信息可以访问它的<a href="https://github.com/littlecodersh/ItChat" target="_blank" rel="external">GitHub主页</a></li>
+<li>首先我们在电脑中安装此库所需的环境，直接在终端中运行<code>pip install</code>即可。</li>
+</ul>
+<blockquote>
+<p><code>pip install itchat</code></p>
+</blockquote>
+<ul>
+<li>如果你没有安装python，请自行搜索有关python的安装方法</li>
+</ul>
+<h2 id="itchat接口介绍"><a href="#itchat接口介绍" class="headerlink" title="itchat接口介绍"></a>itchat接口介绍</h2><h3 id="登陆方法itchat-login"><a href="#登陆方法itchat-login" class="headerlink" title="登陆方法itchat.login()"></a><strong>登陆方法</strong><code>itchat.login()</code></h3><ul>
+<li>直接调用方法itchat.login()后会自动下载登录所用的二维码，二维码为jpg格式。</li>
+<li>第二种方法是调用方法<code>itchat.login(enableCmdQR = 1)</code>使用这个方法后登陆用的二维码将直接在终端（CMD）中打印出来，如果你打印出来的二维码没有对齐，可以尝试将参数修改成<code>itchat.login(enableCmdQr = 2)</code>,这样二维码间的间隙就会变大一些。</li>
+<li>其实itchat有保存登录信息的功能，可以让你退出程序后短暂保存登录信息，下次重新启动程序时就不需要再扫码。但我实际开发时总是遇到一些奇怪的Bug，比如说自动回复有时会一次发送两条，这应该是保存登录信息的时候同时也保存了一些消息记录，导致注册消息时出现了一些bug, 有兴趣的话可以使用如下代码：<code>itchat.auto_login(hotReload=True)</code></li>
+</ul>
+<h3 id="获取消息-itchat-msg-register-TEXT"><a href="#获取消息-itchat-msg-register-TEXT" class="headerlink" title="获取消息@itchat.msg_register(TEXT)"></a><strong>获取消息</strong><code>@itchat.msg_register(TEXT)</code></h3><ul>
+<li>简单来讲，获得消息有两种方法：</li>
+</ul>
+<blockquote>
+<pre><code>import itchat
+from itchat.content import *
+
+第一种方法是获取所有类型为“文字”的消息
+@itchat.msg_register(TEXT)
+def simpleRegister(msg):
+    return msg
+
+第二种方法是带参数的注册方法，如识别是否为群聊消息，是否为好友消息等。
+如果满足参数，就会优先调用此方法。
+@itchat.msg_register(TEXT, isFriendChat=True, isGroupChat=True, isMpChat=True)
+def parameterRegister(msg):
+    return msg
+</code></pre></blockquote>
+<ul>
+<li>除了‘TEXT’文本消息，还有以下几种消息类型：<br><img src="http://oqi5hmt36.bkt.clouddn.com/17-6-13/48725876.jpg" alt=""> </li>
+</ul>
+<h3 id="消息内容msg-39-Content-39"><a href="#消息内容msg-39-Content-39" class="headerlink" title="消息内容msg[&#39;Content&#39;]"></a>消息内容<code>msg[&#39;Content&#39;]</code></h3><ul>
+<li>如果你已经尝试了上述的消息注册方法，你会发现直接打印变量msg是不能成功打印出回复的内容的。因为msg实际上是一个数组，它里头包含了许多有趣的内容。</li>
+<li><strong>常用内容介绍</strong><ul>
+<li><code>msg[&#39;Content&#39;]</code> 顾名思义，它就是消息中的文字信息，直接打印此内容可以打印出收到的文字信息。</li>
+<li><code>msg[&#39;FromUserName&#39;]</code>,消息发出者</li>
+<li><code>msg[&#39;ToUserName&#39;]</code>,消息接受者</li>
+</ul>
+</li>
+</ul>
+<h3 id="发送方法itchat-send-msg-ToUserName"><a href="#发送方法itchat-send-msg-ToUserName" class="headerlink" title="发送方法itchat.send(msg, ToUserName)"></a>发送方法<code>itchat.send(msg, ToUserName)</code></h3><ul>
+<li>itchat中的发送方法不仅仅可以发送文字，还可以发送图片，定位的信息，在此，我将先介绍发送文字的方法。</li>
+<li>send方法有两个参数：<ul>
+<li>msg: 要发送的文字内容，字符串。</li>
+<li>ToUserName: 消息接收者，字符串。</li>
+</ul>
+</li>
+</ul>
+<h2 id="自动回复机器人"><a href="#自动回复机器人" class="headerlink" title="自动回复机器人"></a>自动回复机器人</h2><p>在了解以上信息后，我们便可以制作一个简单的微信自动回复机器人。</p>
+<blockquote>
+<pre><code># -*- coding: utf-8 -*-
+import itchat
+from itchat.content import *
+&apos;&apos;&apos;导入itchat库&apos;&apos;&apos;
+
+&apos;&apos;&apos;注册来自好友的文字信息‘’‘
+@itchat.msg_register(TEXT, isFriendChat = True)
+def autoReply(msg):
+    itchat.reply(u&apos;收到消息: %s&apos; %msg[&apos;Content&apos;], msg[&apos;FromUserName&apos;])
+&apos;&apos;&apos;回复消息发出者收到xxx&apos;&apos;&apos;
+
+itchat.login()
+itchat.run()
+</code></pre></blockquote>
+<p>下次我将介绍如何接入图灵机器人的接口，制作一个微信聊天机器人。</p>
+<blockquote>
+<p>作者：Vincent Li</p>
+<p>更多内容请访问<a href="http://www.zhuile.me/" target="_blank" rel="external">追了么</a></p>
+</blockquote>
 
     
-
-    
-        <script>
-    var randomNum;
-
-    var locatePost = $('.locate-thumbnail-symbol').next();
-    for(var i = 0; i < 10; i++) {
-        randomNum = Math.floor(Math.random() * 19 + 1);
-
-        locatePost.children('.post_thumbnail-random').attr('id', 'random_thumbnail-'+randomNum);
-        locatePost.children('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
-    $('.post_thumbnail-random').addClass('lazy');
-
-        locatePost = locatePost.next();
-    }
-</script>
 
     
 </div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+
+
+    <!-- 使用 changyan -->
+    <div id="changyan-comment">
+        <!--PC和WAP自适应版-->
+<div id="SOHUCS" sid="2017/06/06/wechatbot01/"  ></div>
+<script type="text/javascript">
+(function(){
+var appid = 'cyt1LdMpx';
+var conf = 'prod_fe671ea26c000bdf4ae732dd1ce56b09';
+var width = window.innerWidth || document.documentElement.clientWidth;
+if (width < 960) {
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+
+    </div>
+    <style>
+        #changyan-comment{
+            background-color: #eee;
+            padding: 2pc;
+        }
+    </style>
+
+
+
+
+
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2017/05/24/anscheck/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
 
 
                     
@@ -544,6 +758,14 @@ It will not impact the appearance and can give developers a lot of support :)
 </aside>
 
                     
+
+                    
+                        <!-- Footer Top Button -->
+                        <div class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
 
                     
 

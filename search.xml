@@ -3,6 +3,102 @@
   
     
     <entry>
+      <title><![CDATA[使用itchat库搭建一个微信聊天机器人]]></title>
+      <url>/2017/06/06/wechatbot01/</url>
+      <content type="html"><![CDATA[<h1 id="使用itchat库搭建一个微信聊天机器人"><a href="#使用itchat库搭建一个微信聊天机器人" class="headerlink" title="使用itchat库搭建一个微信聊天机器人"></a>使用itchat库搭建一个微信聊天机器人</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>制作这个机器人的灵感实际上是因为我实在是懒得去一条条的回一些很简单没有意义的微信…(逃，在以下的介绍中我将概述如何使用itchat在python中接收并发送信息，并使用图灵机器人接口完成一个能自动聊天的机器人。</p>
+<p>##插件安装</p>
+<ul>
+<li>itchat是一个python的库，我们使用这个库来获得微信中所收到的消息和发送自定义消息。更多有关这个库的信息可以访问它的<a href="https://github.com/littlecodersh/ItChat" target="_blank" rel="external">GitHub主页</a></li>
+<li>首先我们在电脑中安装此库所需的环境，直接在终端中运行<code>pip install</code>即可。</li>
+</ul>
+<blockquote>
+<p><code>pip install itchat</code></p>
+</blockquote>
+<ul>
+<li>如果你没有安装python，请自行搜索有关python的安装方法</li>
+</ul>
+<h2 id="itchat接口介绍"><a href="#itchat接口介绍" class="headerlink" title="itchat接口介绍"></a>itchat接口介绍</h2><h3 id="登陆方法itchat-login"><a href="#登陆方法itchat-login" class="headerlink" title="登陆方法itchat.login()"></a><strong>登陆方法</strong><code>itchat.login()</code></h3><ul>
+<li>直接调用方法itchat.login()后会自动下载登录所用的二维码，二维码为jpg格式。</li>
+<li>第二种方法是调用方法<code>itchat.login(enableCmdQR = 1)</code>使用这个方法后登陆用的二维码将直接在终端（CMD）中打印出来，如果你打印出来的二维码没有对齐，可以尝试将参数修改成<code>itchat.login(enableCmdQr = 2)</code>,这样二维码间的间隙就会变大一些。</li>
+<li>其实itchat有保存登录信息的功能，可以让你退出程序后短暂保存登录信息，下次重新启动程序时就不需要再扫码。但我实际开发时总是遇到一些奇怪的Bug，比如说自动回复有时会一次发送两条，这应该是保存登录信息的时候同时也保存了一些消息记录，导致注册消息时出现了一些bug, 有兴趣的话可以使用如下代码：<code>itchat.auto_login(hotReload=True)</code></li>
+</ul>
+<h3 id="获取消息-itchat-msg-register-TEXT"><a href="#获取消息-itchat-msg-register-TEXT" class="headerlink" title="获取消息@itchat.msg_register(TEXT)"></a><strong>获取消息</strong><code>@itchat.msg_register(TEXT)</code></h3><ul>
+<li>简单来讲，获得消息有两种方法：</li>
+</ul>
+<blockquote>
+<pre><code>import itchat
+from itchat.content import *
+
+第一种方法是获取所有类型为“文字”的消息
+@itchat.msg_register(TEXT)
+def simpleRegister(msg):
+    return msg
+
+第二种方法是带参数的注册方法，如识别是否为群聊消息，是否为好友消息等。
+如果满足参数，就会优先调用此方法。
+@itchat.msg_register(TEXT, isFriendChat=True, isGroupChat=True, isMpChat=True)
+def parameterRegister(msg):
+    return msg
+</code></pre></blockquote>
+<ul>
+<li>除了‘TEXT’文本消息，还有以下几种消息类型：<br><img src="http://oqi5hmt36.bkt.clouddn.com/17-6-13/48725876.jpg" alt=""> </li>
+</ul>
+<h3 id="消息内容msg-39-Content-39"><a href="#消息内容msg-39-Content-39" class="headerlink" title="消息内容msg[&#39;Content&#39;]"></a>消息内容<code>msg[&#39;Content&#39;]</code></h3><ul>
+<li>如果你已经尝试了上述的消息注册方法，你会发现直接打印变量msg是不能成功打印出回复的内容的。因为msg实际上是一个数组，它里头包含了许多有趣的内容。</li>
+<li><strong>常用内容介绍</strong><ul>
+<li><code>msg[&#39;Content&#39;]</code> 顾名思义，它就是消息中的文字信息，直接打印此内容可以打印出收到的文字信息。</li>
+<li><code>msg[&#39;FromUserName&#39;]</code>,消息发出者</li>
+<li><code>msg[&#39;ToUserName&#39;]</code>,消息接受者</li>
+</ul>
+</li>
+</ul>
+<h3 id="发送方法itchat-send-msg-ToUserName"><a href="#发送方法itchat-send-msg-ToUserName" class="headerlink" title="发送方法itchat.send(msg, ToUserName)"></a>发送方法<code>itchat.send(msg, ToUserName)</code></h3><ul>
+<li>itchat中的发送方法不仅仅可以发送文字，还可以发送图片，定位的信息，在此，我将先介绍发送文字的方法。</li>
+<li>send方法有两个参数：<ul>
+<li>msg: 要发送的文字内容，字符串。</li>
+<li>ToUserName: 消息接收者，字符串。</li>
+</ul>
+</li>
+</ul>
+<h2 id="自动回复机器人"><a href="#自动回复机器人" class="headerlink" title="自动回复机器人"></a>自动回复机器人</h2><p>在了解以上信息后，我们便可以制作一个简单的微信自动回复机器人。</p>
+<blockquote>
+<pre><code># -*- coding: utf-8 -*-
+import itchat
+from itchat.content import *
+&apos;&apos;&apos;导入itchat库&apos;&apos;&apos;
+
+&apos;&apos;&apos;注册来自好友的文字信息‘’‘
+@itchat.msg_register(TEXT, isFriendChat = True)
+def autoReply(msg):
+    itchat.reply(u&apos;收到消息: %s&apos; %msg[&apos;Content&apos;], msg[&apos;FromUserName&apos;])
+&apos;&apos;&apos;回复消息发出者收到xxx&apos;&apos;&apos;
+
+itchat.login()
+itchat.run()
+</code></pre></blockquote>
+<p>下次我将介绍如何接入图灵机器人的接口，制作一个微信聊天机器人。</p>
+<blockquote>
+<p>作者：Vincent Li</p>
+<p>更多内容请访问<a href="http://www.zhuile.me/" target="_blank" rel="external">追了么</a></p>
+</blockquote>
+]]></content>
+      
+        <categories>
+            
+            <category> 聊天机器人 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> wechat </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[在workflow中速查练习答案]]></title>
       <url>/2017/05/24/anscheck/</url>
       <content type="html"><![CDATA[<blockquote>
@@ -69,6 +165,12 @@
     </entry>
     
     <entry>
+      <title><![CDATA[links]]></title>
+      <url>/links/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[图库]]></title>
       <url>/gallery/index.html</url>
       <content type="html"></content>
@@ -77,12 +179,6 @@
     <entry>
       <title><![CDATA[标签云]]></title>
       <url>/tags/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[links]]></title>
-      <url>/links/index.html</url>
       <content type="html"></content>
     </entry>
     
