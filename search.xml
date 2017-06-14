@@ -20,11 +20,25 @@
 <li>第二种方法是调用方法<code>itchat.login(enableCmdQR = 1)</code>使用这个方法后登陆用的二维码将直接在终端（CMD）中打印出来，如果你打印出来的二维码没有对齐，可以尝试将参数修改成<code>itchat.login(enableCmdQr = 2)</code>,这样二维码间的间隙就会变大一些。</li>
 <li>其实itchat有保存登录信息的功能，可以让你退出程序后短暂保存登录信息，下次重新启动程序时就不需要再扫码。但我实际开发时总是遇到一些奇怪的Bug，比如说自动回复有时会一次发送两条，这应该是保存登录信息的时候同时也保存了一些消息记录，导致注册消息时出现了一些bug, 有兴趣的话可以使用如下代码：</li>
 </ul>
-<figure class="highlight ada"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">itchat.auto_login(hotReload=<span class="literal">True</span>)</div></pre></td></tr></table></figure>
+<pre class="line-numbers language-python"><code class="language-python">itchat<span class="token punctuation">.</span>auto_login<span class="token punctuation">(</span>hotReload<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <h3 id="获取消息-itchat-msg-register-TEXT"><a href="#获取消息-itchat-msg-register-TEXT" class="headerlink" title="获取消息@itchat.msg_register(TEXT)"></a><strong>获取消息</strong><code>@itchat.msg_register(TEXT)</code></h3><ul>
 <li>简单来讲，获得消息有两种方法：</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> itchat</div><div class="line"><span class="keyword">from</span> itchat.content <span class="keyword">import</span> *</div><div class="line"> 		</div><div class="line"><span class="string">'''第一种方法是获取所有类型为“文字”的消息'''</span></div><div class="line"><span class="meta">@itchat.msg_register(TEXT)</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">simpleRegister</span><span class="params">(msg)</span>:</span></div><div class="line">	<span class="keyword">return</span> msg</div><div class="line">			</div><div class="line"><span class="string">'''第二种方法是带参数的注册方法，如识别是否为群聊消息，是否为好友消息等。'''</span></div><div class="line"><span class="string">'''如果满足参数，就会优先调用此方法。'''</span></div><div class="line"><span class="meta">@itchat.msg_register(TEXT, isFriendChat=True, isGroupChat=True, isMpChat=True)</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">parameterRegister</span><span class="params">(msg)</span>:</span></div><div class="line">	<span class="keyword">return</span> msg</div></pre></td></tr></table></figure>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> itchat
+<span class="token keyword">from</span> itchat<span class="token punctuation">.</span>content <span class="token keyword">import</span> <span class="token operator">*</span>
+
+<span class="token triple-quoted-string string">'''第一种方法是获取所有类型为“文字”的消息'''</span>
+@itchat<span class="token punctuation">.</span>msg_register<span class="token punctuation">(</span>TEXT<span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">simpleRegister</span><span class="token punctuation">(</span>msg<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> msg
+
+<span class="token triple-quoted-string string">'''第二种方法是带参数的注册方法，如识别是否为群聊消息，是否为好友消息等。'''</span>
+<span class="token triple-quoted-string string">'''如果满足参数，就会优先调用此方法。'''</span>
+@itchat<span class="token punctuation">.</span>msg_register<span class="token punctuation">(</span>TEXT<span class="token punctuation">,</span> isFriendChat<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> isGroupChat<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> isMpChat<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">parameterRegister</span><span class="token punctuation">(</span>msg<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> msg
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li>除了‘TEXT’文本消息，还有以下几种消息类型：<br><img src="http://oqi5hmt36.bkt.clouddn.com/17-6-13/48725876.jpg" alt=""> </li>
 </ul>
@@ -46,7 +60,20 @@
 </li>
 </ul>
 <h2 id="自动回复机器人"><a href="#自动回复机器人" class="headerlink" title="自动回复机器人"></a>自动回复机器人</h2><p>在了解以上信息后，我们便可以制作一个简单的微信自动回复机器人。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding: utf-8 -*-</span></div><div class="line"><span class="keyword">import</span> itchat</div><div class="line"><span class="keyword">from</span> itchat.content <span class="keyword">import</span> *</div><div class="line"><span class="string">'''导入itchat库'''</span></div><div class="line"></div><div class="line"><span class="string">'''注册来自好友的文字信息‘’‘</span></div><div class="line">@itchat.msg_register(TEXT, isFriendChat = True)</div><div class="line">def autoReply(msg):</div><div class="line">	itchat.reply(u'收到消息: %s' %msg['Content'], msg['FromUserName'])</div><div class="line">'''回复消息发出者收到xxx<span class="string">'''</span></div><div class="line"></div><div class="line">itchat.login()</div><div class="line">itchat.run()</div></pre></td></tr></table></figure>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># -*- coding: utf-8 -*-</span>
+<span class="token keyword">import</span> itchat
+<span class="token keyword">from</span> itchat<span class="token punctuation">.</span>content <span class="token keyword">import</span> <span class="token operator">*</span>
+<span class="token triple-quoted-string string">'''导入itchat库'''</span>
+
+<span class="token triple-quoted-string string">'''注册来自好友的文字信息'''</span>
+@itchat<span class="token punctuation">.</span>msg_register<span class="token punctuation">(</span>TEXT<span class="token punctuation">,</span> isFriendChat <span class="token operator">=</span> <span class="token boolean">True</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">autoReply</span><span class="token punctuation">(</span>msg<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    itchat<span class="token punctuation">.</span>reply<span class="token punctuation">(</span>u<span class="token string">'收到消息: %s'</span> <span class="token operator">%</span>msg<span class="token punctuation">[</span><span class="token string">'Content'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> msg<span class="token punctuation">[</span><span class="token string">'FromUserName'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token triple-quoted-string string">'''回复消息发出者：收到xxx'''</span>
+
+itchat<span class="token punctuation">.</span>login<span class="token punctuation">(</span><span class="token punctuation">)</span>
+itchat<span class="token punctuation">.</span>run<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>下次我将介绍如何接入图灵机器人的接口，制作一个微信聊天机器人。</p>
 <blockquote>
 <p>作者：Vincent Li</p>
