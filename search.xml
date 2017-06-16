@@ -6,12 +6,11 @@
       <title><![CDATA[使用itchat库搭建一个微信聊天机器人]]></title>
       <url>/2017/06/06/wechatbot01/</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>制作这个机器人的灵感实际上是因为我实在是懒得去一条条的回一些很简单没有意义的微信…(逃，在以下的介绍中我将概述如何使用itchat在python中接收并发送信息，并使用图灵机器人接口完成一个能自动聊天的机器人。</p>
-<p>##插件安装</p>
-<ul>
+<h2 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装"></a>插件安装</h2><ul>
 <li>itchat是一个python的库，我们使用这个库来获得微信中所收到的消息和发送自定义消息。更多有关这个库的信息可以访问它的<a href="https://github.com/littlecodersh/ItChat" target="_blank" rel="external">GitHub主页</a></li>
 <li>首先我们在电脑中安装此库所需的环境，直接在终端中运行<code>pip install</code>即可。</li>
 </ul>
-<p>`</p>
+<p><code>pip install python</code></p>
 <ul>
 <li>如果你没有安装python，请自行搜索有关python的安装方法</li>
 </ul>
@@ -157,6 +156,12 @@ itchat<span class="token punctuation">.</span>run<span class="token punctuation"
   
     
     <entry>
+      <title><![CDATA[links]]></title>
+      <url>/links/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[About]]></title>
       <url>/about/index.html</url>
       <content type="html"></content>
@@ -165,12 +170,6 @@ itchat<span class="token punctuation">.</span>run<span class="token punctuation"
     <entry>
       <title><![CDATA[图库]]></title>
       <url>/gallery/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[links]]></title>
-      <url>/links/index.html</url>
       <content type="html"></content>
     </entry>
     
