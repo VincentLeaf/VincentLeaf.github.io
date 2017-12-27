@@ -5,7 +5,7 @@
     
     <title>
         
-            追了么 | 
+            接入图灵接口来制作微信机器人 | 
         
         追了么
     </title>
@@ -31,7 +31,7 @@
     <meta name="theme-color" content="#0097A7">
     <meta name="author" content="Vincent Li">
     <meta name="description" content="Well... It&#39;s actually VL&#39;s Blog.">
-    <meta name="keywords" content="追了么">
+    <meta name="keywords" content="追了么,wechat">
 
     <!-- Favicons -->
     <link rel="icon shortcut" type="image/ico" href="/img/avator.jpg">
@@ -57,9 +57,9 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="http://zhuile.me">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="追了么 | 追了么">
+    <meta property="og:title" content="接入图灵接口来制作微信机器人 | 追了么">
     <meta property="og:description" content="Well... It&#39;s actually VL&#39;s Blog.">
-    
+    <meta property="og:article:tag" content="wechat"> 
 
     <!--[if lte IE 9]>
         <link rel="stylesheet" href="/css/ie-blocker.css">
@@ -291,7 +291,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#图灵机器人介绍"><span class="post-toc-number">2.</span> <span class="post-toc-text">图灵机器人介绍</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Request"><span class="post-toc-number">3.</span> <span class="post-toc-text">Request</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#将整个Request-amp-Post操作打包"><span class="post-toc-number">4.</span> <span class="post-toc-text">将整个Request & Post操作打包</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#userid"><span class="post-toc-number">5.</span> <span class="post-toc-text">userid</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#回复用户"><span class="post-toc-number">6.</span> <span class="post-toc-text">回复用户</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#转账功能"><span class="post-toc-number">7.</span> <span class="post-toc-text">转账功能</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结"><span class="post-toc-number">8.</span> <span class="post-toc-text">总结</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#完整代码"><span class="post-toc-number">9.</span> <span class="post-toc-text">完整代码</span></a></li></ol>
 
         <!--
         <li class="mdl-menu__item">
@@ -315,20 +315,11 @@
                 
     <!-- Paradox Post Header -->
     
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-            <script>
-    var randomNum = Math.floor(Math.random() * 19 + 1);
-
-    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
-    $('.post_thumbnail-random').addClass('lazy');
-</script>
-
-        
+        <!-- Custom Thumbnail -->
+        <div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url(http://oqi5hmt36.bkt.clouddn.com/17-12-27/3788808.jpg)">
     
             <p class="article-headline-p">
-                追了么
+                接入图灵接口来制作微信机器人
             </p>
         </div>
 
@@ -347,7 +338,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>Vincent Li</strong>
-        <span>5月 23, 2017</span>
+        <span>7月 06, 2017</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -371,7 +362,7 @@
     </button>
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
         <li class="mdl-menu__item">
-        
+        <a class="post_tag-link" href="/tags/wechat/">wechat</a>
     </ul>
     
 
@@ -387,7 +378,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=追了么&url=http://zhuile.me//2017/05/23/追了么/index.html&pic=&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=接入图灵接口来制作微信机器人&url=http://zhuile.me//2017/07/06/wechatbot02/index.html&pic=&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 分享到微博
             </li>
@@ -396,7 +387,7 @@
 
     <!-- Share Twitter -->
     
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=追了么&url=http://zhuile.me//2017/05/23/追了么/index.html&via=Vincent Li" target="_blank">
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=接入图灵接口来制作微信机器人&url=http://zhuile.me//2017/07/06/wechatbot02/index.html&via=Vincent Li" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Twitter
             </li>
@@ -405,7 +396,7 @@
 
     <!-- Share Facebook -->
     
-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://zhuile.me//2017/05/23/追了么/index.html" target="_blank">
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://zhuile.me//2017/07/06/wechatbot02/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Facebook
             </li>
@@ -414,7 +405,7 @@
 
     <!-- Share Google+ -->
     
-        <a class="post_share-link" href="https://plus.google.com/share?url=http://zhuile.me//2017/05/23/追了么/index.html" target="_blank">
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://zhuile.me//2017/07/06/wechatbot02/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Google+
             </li>
@@ -426,7 +417,7 @@
 
     <!-- Share QQ -->
     
-        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=追了么&title=追了么&summary=Well... It&#39;s actually VL&#39;s Blog.&pics=http://zhuile.me/img/avator.jpg&url=http://zhuile.me/2017/05/23/追了么/index.html" target="_blank">
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=追了么&title=接入图灵接口来制作微信机器人&summary=Well... It&#39;s actually VL&#39;s Blog.&pics=http://zhuile.me/img/avator.jpg&url=http://zhuile.me/2017/07/06/wechatbot02/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 QQ
             </li>
@@ -444,7 +435,147 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>上次我们一起了解了有关itchat常用的API接口，这次我将介绍如何将图灵机器人接入itchat，制作一个能够智能判断，回复消息的微信机器人。<br><img src="http://oqi5hmt36.bkt.clouddn.com/17-12-27/3788808.jpg" alt=""></p>
+<h2 id="图灵机器人介绍"><a href="#图灵机器人介绍" class="headerlink" title="图灵机器人介绍"></a>图灵机器人介绍</h2><p><a href="http://www.tuling123.com" target="_blank" rel="external">图灵机器人</a>是一个能够根据用户输入来自动判断场景来回复用户的开发平台，也是目前我所了解中在中文语境下运行的最好的平台（我没并没有收到来自他们的广告费）。在平台注册后我们可以拿到自己的API Key，并用Request的方式来获取答复。<br><img src="http://oqi5hmt36.bkt.clouddn.com/17-12-27/2640973.jpg" alt=""></p>
+<h2 id="Request"><a href="#Request" class="headerlink" title="Request"></a>Request</h2><p>图灵Request的json至少包含以下三个值，分别是key (API key)， info (用户输入的消息)，userid (用户唯一的ID，用来在不同用户下判断不同的语境)。</p>
+<h2 id="将整个Request-amp-Post操作打包"><a href="#将整个Request-amp-Post操作打包" class="headerlink" title="将整个Request &amp; Post操作打包"></a>将整个Request &amp; Post操作打包</h2><p>为了后续的使用，我们将整个request的流程打包成一个方法。这里运用到了Python的request库和json库。</p>
+<pre><code>def getReply(input, uid):
+    url = &#39;http://www.tuling123.com/openapi/api&#39;
+    &#39;&#39;&#39;API Address&#39;&#39;&#39;
+
+    data = {
+        &#39;key&#39; : &#39;b1bd5226a8e641b89b4de72c2757ce33&#39;,
+        &#39;info&#39; : input,
+        &#39;userid&#39; : uid
+    }
+    &#39;&#39;&#39;the three value that Tuling required&#39;&#39;&#39;
+
+    jsonData = json.dumps(data)
+    &#39;&#39;&#39;create json data&#39;&#39;&#39;
+
+    print (jsonData)
+    &#39;&#39;&#39;for future debug use&#39;&#39;&#39;
+
+    reply = requests.post(url, jsonData)
+    &#39;&#39;&#39;post it, and get the generated reply from tuling&#39;&#39;&#39;
+
+    return reply.json()
+    &#39;&#39;&#39;return the reply content&#39;&#39;&#39;
+</code></pre><p>通过post得到一个json的值，这个json根据语境的不同会有两个或三个参数。分别是code (回复消息的类型)，text（回复消息的内容），url（如果回复消息中含有链接，会在这个里面显示）。</p>
+<h2 id="userid"><a href="#userid" class="headerlink" title="userid"></a>userid</h2><p>前面提到request的json中有一个必须的参数，userid。这个参数是用来判断不同用户的语境的。比如说一个用户提问“天气怎么样”，此时根据这个userid，机器人会进一步询问“你所在的城市在哪里”，因为记录了userid，此时机器人就有能力联系上下文来进一步回复用户了。</p>
+<p>那么这个userid从哪里来呢？最简单的办法就是直接使用用户的微信ID。这个微信ID不同于我们平时所常说的微信号，微信ID是每个用户唯一的，由数字字母组成。查看图灵的文档后发现，微信ID远远长出图灵所接受userid的位数，所以在这里要做一个截取的操作。</p>
+<pre><code>def generateUID(input):
+    return input[2:30]
+    &#39;&#39;&#39;extract wechat ID&#39;&#39;&#39;
+</code></pre><h2 id="回复用户"><a href="#回复用户" class="headerlink" title="回复用户"></a>回复用户</h2><p>在完成上面的部分后，我们当然要把我们获取到的回复信息返回给用户。以下讲讲完整的程序逻辑。</p>
+<p>首先是收到来自用户发出的信息，判断为文字信息后进入回复的方法。然后生成图灵要用的userid，用前面写的getReply方法来获取回复。根据code来判断产生的回复中有没有含有链接，如果的有话也要发送给用户。</p>
+<p>代码如下：</p>
+<pre><code>@itchat.msg_register(TEXT, isFriendChat=True) 
+&#39;&#39;&#39;only reply text message&#39;&#39;&#39;
+def simpleReply(msg):
+    reply = getReply(msg[&#39;Content&#39;], generateUID(msg[&#39;FromUserName&#39;])) &#39;&#39;&#39;get reply&#39;&#39;&#39;
+    replyText = reply[&#39;text&#39;] &#39;&#39;&#39;reply content&#39;&#39;&#39;
+    replyCode = &#39;%s&#39; % reply[&#39;code&#39;] &#39;&#39;&#39;reply code&#39;&#39;&#39;
+    itchat.send(replyText, msg[&#39;FromUserName&#39;]) 
+    &#39;&#39;&#39;send back text message&#39;&#39;&#39;
+    if(replyCode == &#39;200000&#39;):
+        itchat.send(reply[&#39;url&#39;], msg[&#39;FromUserName&#39;])
+    elif(replyCode == &#39;302000&#39;):
+        for obj in reply[&#39;list&#39;]:
+            itchat.send(&#39;标题：%s&#39; % obj[&#39;article&#39;], msg[&#39;FromUserName&#39;])
+            itchat.send(obj[&#39;detailurl&#39;], msg[&#39;FromUserName&#39;])
+
+    &#39;&#39;&#39;
+    send other contents to users if reply have any url
+    &#39;&#39;&#39;
+
+    print (&#39;Received message from %s&#39; % msg[&#39;FromUserName&#39;])
+    print (&#39;%s&#39; % msg[&#39;Content&#39;])
+    print (&#39;my reply: &#39; + replyText)
+    &#39;&#39;&#39;
+    for future debug use
+    &#39;&#39;&#39;
+</code></pre><h2 id="转账功能"><a href="#转账功能" class="headerlink" title="转账功能"></a>转账功能</h2><p>判断消息为note类型后我们可以用这个功能来判断转账的数额是否为用户所要求的，如果不是，就可以及时发出提醒。代码如下</p>
+<pre><code>@itchat.msg_register(&#39;Note&#39;)
+&#39;&#39;&#39;只处理转账类型的消息&#39;&#39;&#39;
+def get_note(msg):
+    if any(s in msg[&#39;Text&#39;] for s in (u&#39;红包&#39;, u&#39;转账&#39;)):
+        money = msg[&#39;Text&#39;]
+        amount = filter(str.isdigit, money.encode(&#39;gbk&#39;))
+        &#39;&#39;&#39;获取用户转账的数额&#39;&#39;&#39;
+        target = &#39;100&#39;
+        &#39;&#39;&#39;目标数额&#39;&#39;&#39;
+        print(money)
+        print(amount)
+        &#39;&#39;&#39;debug info&#39;&#39;&#39;
+        if(amount == target):
+            itchat.send(&#39;success!&#39;, msg[&#39;FromUserName&#39;])
+        elif(amount != target):
+            itchat.send(&#39;failed, wrong amount&#39;, msg[&#39;FromUserName&#39;])
+    else:
+        print(&#39;Other note: %s&#39;%msg[&#39;Text&#39;])
+        &#39;&#39;&#39;notify user is the amount of money correct or not&#39;&#39;&#39;
+</code></pre><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>通过使用python的request, itchat以及图灵机器人平台，我们很简单的完成里一个能够智能回复消息,接受指定交易的微信机器人。如果加入更多的逻辑判断，如检测内容中的时间词语等，这个微信机器人甚至可以帮我们来记录日程，创建备忘录等等。</p>
+<h2 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h2><pre><code># -*- coding: utf-8 -*-
+import itchat
+from itchat.content import *
+import requests
+import json
+
+def generateUID(input):
+    return input[2:30]
+
+def getReply(input, uid):
+    url = &#39;http://www.tuling123.com/openapi/api&#39;
+    data = {
+        &#39;key&#39; : &#39;b1bd5226a8e641b89b4de72c2757ce33&#39;,
+        &#39;info&#39; : input,
+        &#39;userid&#39; : uid
+    }
+    jsonData = json.dumps(data)
+    print (jsonData)
+    reply = requests.post(url, jsonData)
+    return reply.json()
+
+@itchat.msg_register(TEXT, isFriendChat=True)
+def simpleReply(msg):
+    reply = getReply(msg[&#39;Content&#39;], generateUID(msg[&#39;FromUserName&#39;]))
+    replyText = reply[&#39;text&#39;]
+    replyCode = &#39;%s&#39; % reply[&#39;code&#39;]
+    itchat.send(replyText, msg[&#39;FromUserName&#39;])
+    if(replyCode == &#39;200000&#39;):
+        itchat.send(reply[&#39;url&#39;], msg[&#39;FromUserName&#39;])
+    elif(replyCode == &#39;302000&#39;):
+        for obj in reply[&#39;list&#39;]:
+            itchat.send(&#39;标题：%s&#39; % obj[&#39;article&#39;], msg[&#39;FromUserName&#39;])
+            itchat.send(obj[&#39;detailurl&#39;], msg[&#39;FromUserName&#39;])
+
+    print (&#39;Received message from %s&#39; % msg[&#39;FromUserName&#39;])
+    print (&#39;%s&#39; % msg[&#39;Content&#39;])
+    print (&#39;my reply: &#39; + replyText)
+
+@itchat.msg_register(&#39;Note&#39;)
+def get_note(msg):
+    if any(s in msg[&#39;Text&#39;] for s in (u&#39;红包&#39;, u&#39;转账&#39;)):
+        money = msg[&#39;Text&#39;]
+        amount = filter(str.isdigit, money.encode(&#39;gbk&#39;))
+        target = &#39;100&#39;
+        print(money)
+        print(amount)
+        if(amount == target):
+            itchat.send(&#39;success!&#39;, msg[&#39;FromUserName&#39;])
+        elif(amount != target):
+            itchat.send(&#39;failed, wrong amount&#39;, msg[&#39;FromUserName&#39;])
+    else:
+        print(&#39;Other note: %s&#39;%msg[&#39;Text&#39;])
+
+itchat.auto_login(enableCmdQR= 2)
+itchat.run()
+</code></pre><blockquote>
+<p>作者：Vincent Li</p>
+<p>更多内容请访问<a href="http://www.zhuile.me/" target="_blank" rel="external">追了么</a></p>
+</blockquote>
+
     
 
     
@@ -461,7 +592,7 @@
     <!-- 使用 changyan -->
     <div id="changyan-comment">
         <!--PC和WAP自适应版-->
-<div id="SOHUCS" sid="2017/05/23/追了么/"  ></div>
+<div id="SOHUCS" sid="2017/07/06/wechatbot02/"  ></div>
 <script type="text/javascript">
 (function(){
 var appid = 'cyt1LdMpx';
@@ -490,19 +621,19 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
-        <a href="/2017/05/24/anscheck/" id="post_nav-newer" class="prev-content">
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_back</i>
-            </button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            新篇
-        </a>
-    
 
     <!-- Section Spacer -->
     <div class="section-spacer"></div>
 
     <!-- Next Nav -->
+    
+        <a href="/2017/06/06/wechatbot01/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
     
 </nav>
 

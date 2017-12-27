@@ -3,9 +3,169 @@
   
     
     <entry>
+      <title><![CDATA[接入图灵接口来制作微信机器人]]></title>
+      <url>/2017/07/06/wechatbot02/</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>上次我们一起了解了有关itchat常用的API接口，这次我将介绍如何将图灵机器人接入itchat，制作一个能够智能判断，回复消息的微信机器人。<br><img src="http://oqi5hmt36.bkt.clouddn.com/17-12-27/3788808.jpg" alt=""></p>
+<h2 id="图灵机器人介绍"><a href="#图灵机器人介绍" class="headerlink" title="图灵机器人介绍"></a>图灵机器人介绍</h2><p><a href="http://www.tuling123.com" target="_blank" rel="external">图灵机器人</a>是一个能够根据用户输入来自动判断场景来回复用户的开发平台，也是目前我所了解中在中文语境下运行的最好的平台（我没并没有收到来自他们的广告费）。在平台注册后我们可以拿到自己的API Key，并用Request的方式来获取答复。<br><img src="http://oqi5hmt36.bkt.clouddn.com/17-12-27/2640973.jpg" alt=""></p>
+<h2 id="Request"><a href="#Request" class="headerlink" title="Request"></a>Request</h2><p>图灵Request的json至少包含以下三个值，分别是key (API key)， info (用户输入的消息)，userid (用户唯一的ID，用来在不同用户下判断不同的语境)。</p>
+<h2 id="将整个Request-amp-Post操作打包"><a href="#将整个Request-amp-Post操作打包" class="headerlink" title="将整个Request &amp; Post操作打包"></a>将整个Request &amp; Post操作打包</h2><p>为了后续的使用，我们将整个request的流程打包成一个方法。这里运用到了Python的request库和json库。</p>
+<pre><code>def getReply(input, uid):
+    url = &#39;http://www.tuling123.com/openapi/api&#39;
+    &#39;&#39;&#39;API Address&#39;&#39;&#39;
+
+    data = {
+        &#39;key&#39; : &#39;b1bd5226a8e641b89b4de72c2757ce33&#39;,
+        &#39;info&#39; : input,
+        &#39;userid&#39; : uid
+    }
+    &#39;&#39;&#39;the three value that Tuling required&#39;&#39;&#39;
+
+    jsonData = json.dumps(data)
+    &#39;&#39;&#39;create json data&#39;&#39;&#39;
+
+    print (jsonData)
+    &#39;&#39;&#39;for future debug use&#39;&#39;&#39;
+
+    reply = requests.post(url, jsonData)
+    &#39;&#39;&#39;post it, and get the generated reply from tuling&#39;&#39;&#39;
+
+    return reply.json()
+    &#39;&#39;&#39;return the reply content&#39;&#39;&#39;
+</code></pre><p>通过post得到一个json的值，这个json根据语境的不同会有两个或三个参数。分别是code (回复消息的类型)，text（回复消息的内容），url（如果回复消息中含有链接，会在这个里面显示）。</p>
+<h2 id="userid"><a href="#userid" class="headerlink" title="userid"></a>userid</h2><p>前面提到request的json中有一个必须的参数，userid。这个参数是用来判断不同用户的语境的。比如说一个用户提问“天气怎么样”，此时根据这个userid，机器人会进一步询问“你所在的城市在哪里”，因为记录了userid，此时机器人就有能力联系上下文来进一步回复用户了。</p>
+<p>那么这个userid从哪里来呢？最简单的办法就是直接使用用户的微信ID。这个微信ID不同于我们平时所常说的微信号，微信ID是每个用户唯一的，由数字字母组成。查看图灵的文档后发现，微信ID远远长出图灵所接受userid的位数，所以在这里要做一个截取的操作。</p>
+<pre><code>def generateUID(input):
+    return input[2:30]
+    &#39;&#39;&#39;extract wechat ID&#39;&#39;&#39;
+</code></pre><h2 id="回复用户"><a href="#回复用户" class="headerlink" title="回复用户"></a>回复用户</h2><p>在完成上面的部分后，我们当然要把我们获取到的回复信息返回给用户。以下讲讲完整的程序逻辑。</p>
+<p>首先是收到来自用户发出的信息，判断为文字信息后进入回复的方法。然后生成图灵要用的userid，用前面写的getReply方法来获取回复。根据code来判断产生的回复中有没有含有链接，如果的有话也要发送给用户。</p>
+<p>代码如下：</p>
+<pre><code>@itchat.msg_register(TEXT, isFriendChat=True) 
+&#39;&#39;&#39;only reply text message&#39;&#39;&#39;
+def simpleReply(msg):
+    reply = getReply(msg[&#39;Content&#39;], generateUID(msg[&#39;FromUserName&#39;])) &#39;&#39;&#39;get reply&#39;&#39;&#39;
+    replyText = reply[&#39;text&#39;] &#39;&#39;&#39;reply content&#39;&#39;&#39;
+    replyCode = &#39;%s&#39; % reply[&#39;code&#39;] &#39;&#39;&#39;reply code&#39;&#39;&#39;
+    itchat.send(replyText, msg[&#39;FromUserName&#39;]) 
+    &#39;&#39;&#39;send back text message&#39;&#39;&#39;
+    if(replyCode == &#39;200000&#39;):
+        itchat.send(reply[&#39;url&#39;], msg[&#39;FromUserName&#39;])
+    elif(replyCode == &#39;302000&#39;):
+        for obj in reply[&#39;list&#39;]:
+            itchat.send(&#39;标题：%s&#39; % obj[&#39;article&#39;], msg[&#39;FromUserName&#39;])
+            itchat.send(obj[&#39;detailurl&#39;], msg[&#39;FromUserName&#39;])
+
+    &#39;&#39;&#39;
+    send other contents to users if reply have any url
+    &#39;&#39;&#39;
+
+    print (&#39;Received message from %s&#39; % msg[&#39;FromUserName&#39;])
+    print (&#39;%s&#39; % msg[&#39;Content&#39;])
+    print (&#39;my reply: &#39; + replyText)
+    &#39;&#39;&#39;
+    for future debug use
+    &#39;&#39;&#39;
+</code></pre><h2 id="转账功能"><a href="#转账功能" class="headerlink" title="转账功能"></a>转账功能</h2><p>判断消息为note类型后我们可以用这个功能来判断转账的数额是否为用户所要求的，如果不是，就可以及时发出提醒。代码如下</p>
+<pre><code>@itchat.msg_register(&#39;Note&#39;)
+&#39;&#39;&#39;只处理转账类型的消息&#39;&#39;&#39;
+def get_note(msg):
+    if any(s in msg[&#39;Text&#39;] for s in (u&#39;红包&#39;, u&#39;转账&#39;)):
+        money = msg[&#39;Text&#39;]
+        amount = filter(str.isdigit, money.encode(&#39;gbk&#39;))
+        &#39;&#39;&#39;获取用户转账的数额&#39;&#39;&#39;
+        target = &#39;100&#39;
+        &#39;&#39;&#39;目标数额&#39;&#39;&#39;
+        print(money)
+        print(amount)
+        &#39;&#39;&#39;debug info&#39;&#39;&#39;
+        if(amount == target):
+            itchat.send(&#39;success!&#39;, msg[&#39;FromUserName&#39;])
+        elif(amount != target):
+            itchat.send(&#39;failed, wrong amount&#39;, msg[&#39;FromUserName&#39;])
+    else:
+        print(&#39;Other note: %s&#39;%msg[&#39;Text&#39;])
+        &#39;&#39;&#39;notify user is the amount of money correct or not&#39;&#39;&#39;
+</code></pre><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>通过使用python的request, itchat以及图灵机器人平台，我们很简单的完成里一个能够智能回复消息,接受指定交易的微信机器人。如果加入更多的逻辑判断，如检测内容中的时间词语等，这个微信机器人甚至可以帮我们来记录日程，创建备忘录等等。</p>
+<h2 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h2><pre><code># -*- coding: utf-8 -*-
+import itchat
+from itchat.content import *
+import requests
+import json
+
+def generateUID(input):
+    return input[2:30]
+
+def getReply(input, uid):
+    url = &#39;http://www.tuling123.com/openapi/api&#39;
+    data = {
+        &#39;key&#39; : &#39;b1bd5226a8e641b89b4de72c2757ce33&#39;,
+        &#39;info&#39; : input,
+        &#39;userid&#39; : uid
+    }
+    jsonData = json.dumps(data)
+    print (jsonData)
+    reply = requests.post(url, jsonData)
+    return reply.json()
+
+@itchat.msg_register(TEXT, isFriendChat=True)
+def simpleReply(msg):
+    reply = getReply(msg[&#39;Content&#39;], generateUID(msg[&#39;FromUserName&#39;]))
+    replyText = reply[&#39;text&#39;]
+    replyCode = &#39;%s&#39; % reply[&#39;code&#39;]
+    itchat.send(replyText, msg[&#39;FromUserName&#39;])
+    if(replyCode == &#39;200000&#39;):
+        itchat.send(reply[&#39;url&#39;], msg[&#39;FromUserName&#39;])
+    elif(replyCode == &#39;302000&#39;):
+        for obj in reply[&#39;list&#39;]:
+            itchat.send(&#39;标题：%s&#39; % obj[&#39;article&#39;], msg[&#39;FromUserName&#39;])
+            itchat.send(obj[&#39;detailurl&#39;], msg[&#39;FromUserName&#39;])
+
+    print (&#39;Received message from %s&#39; % msg[&#39;FromUserName&#39;])
+    print (&#39;%s&#39; % msg[&#39;Content&#39;])
+    print (&#39;my reply: &#39; + replyText)
+
+@itchat.msg_register(&#39;Note&#39;)
+def get_note(msg):
+    if any(s in msg[&#39;Text&#39;] for s in (u&#39;红包&#39;, u&#39;转账&#39;)):
+        money = msg[&#39;Text&#39;]
+        amount = filter(str.isdigit, money.encode(&#39;gbk&#39;))
+        target = &#39;100&#39;
+        print(money)
+        print(amount)
+        if(amount == target):
+            itchat.send(&#39;success!&#39;, msg[&#39;FromUserName&#39;])
+        elif(amount != target):
+            itchat.send(&#39;failed, wrong amount&#39;, msg[&#39;FromUserName&#39;])
+    else:
+        print(&#39;Other note: %s&#39;%msg[&#39;Text&#39;])
+
+itchat.auto_login(enableCmdQR= 2)
+itchat.run()
+</code></pre><blockquote>
+<p>作者：Vincent Li</p>
+<p>更多内容请访问<a href="http://www.zhuile.me/" target="_blank" rel="external">追了么</a></p>
+</blockquote>
+]]></content>
+      
+        <categories>
+            
+            <category> 聊天机器人 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> wechat </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[使用itchat库搭建一个微信聊天机器人]]></title>
       <url>/2017/06/06/wechatbot01/</url>
-      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>制作这个机器人的灵感实际上是因为我实在是懒得去一条条的回一些很简单没有意义的微信…(逃，在以下的介绍中我将概述如何使用itchat在python中接收并发送信息，并使用图灵机器人接口完成一个能自动聊天的机器人。</p>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>制作这个机器人的灵感实际上是因为我实在是懒得去一条条的回一些很简单没有意义的微信(逃，在以下的介绍中我将概述如何使用itchat在python中接收并发送信息，并使用图灵机器人接口完成一个能自动聊天的机器人。</p>
 <h2 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装"></a>插件安装</h2><ul>
 <li>itchat是一个python的库，我们使用这个库来获得微信中所收到的消息和发送自定义消息。更多有关这个库的信息可以访问它的<a href="https://github.com/littlecodersh/ItChat" target="_blank" rel="external">GitHub主页</a></li>
 <li>首先我们在电脑中安装此库所需的环境，直接在终端中运行<code>pip install</code>即可。</li>
@@ -161,12 +321,6 @@ itchat<span class="token punctuation">.</span>run<span class="token punctuation"
   
     
     <entry>
-      <title><![CDATA[图库]]></title>
-      <url>/gallery/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
       <title><![CDATA[About]]></title>
       <url>/about/index.html</url>
       <content type="html"></content>
@@ -175,6 +329,12 @@ itchat<span class="token punctuation">.</span>run<span class="token punctuation"
     <entry>
       <title><![CDATA[links]]></title>
       <url>/links/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[图库]]></title>
+      <url>/gallery/index.html</url>
       <content type="html"></content>
     </entry>
     
