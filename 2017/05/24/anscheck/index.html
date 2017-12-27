@@ -316,7 +316,7 @@
     <!-- Paradox Post Header -->
     
         <!-- Custom Thumbnail -->
-        <div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url(http://i1.piimg.com/588926/04c2ad139d9b5891.jpg)">
+        <div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url(http://oqi5hmt36.bkt.clouddn.com/17-12-27/53652226.jpg)">
     
             <p class="article-headline-p">
                 在workflow中速查练习答案
@@ -438,32 +438,37 @@
         <blockquote>
 <p>这几天在刷SAT练习题时发现在查答案的时候总是要把书翻来翻去，看半天还没找到自己所需要的答案，于是便脑洞一开，设计了这个workflow流程。</p>
 </blockquote>
+<hr>
+<p>Updated, my pics cloud crash and I change to a more stable service.</p>
 <h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>这个程序的思路是十分简单的，创建一个数组，把答案（ABCDE）全部都丢到数组里，用户输入index，返回index所在的值。</p>
 <h1 id="开始制作"><a href="#开始制作" class="headerlink" title="开始制作"></a>开始制作</h1><ul>
 <li>首先先花了五分钟把550个答案手动打到了电脑里…（手酸）其实可以直接跟老师要答案的电子版会更快。</li>
 </ul>
-<p><img src="http://i1.piimg.com/588926/cb025bb2d863d2cb.png" alt="answers"></p>
+<p><img src="http://oqi5hmt36.bkt.clouddn.com/17-12-27/53839916.jpg" alt="answers"></p>
 <ul>
-<li>在workflow里选择流程时我实际上遇到了一下小困难，dictionary或者list的格式都是需要一个一个添加值的，这样的话手都会按抽筋吧，而且效率低下。翻了一遍之后发现了一个满足我需求的流程：split text.</li>
+<li>在workflow里选择一个正确的流程可以轻松很多，dictionary或者list的格式都是需要一个一个添加值的，这样的话手都会按抽筋吧，而且效率低下。翻了一遍之后发现了一个满足我需求的流程：split text.</li>
 </ul>
-<p><img src="http://i1.piimg.com/588926/c683a8e8fc6ee3c9.png" alt="spilit"></p>
+<p><img src="http://oqi5hmt36.bkt.clouddn.com/17-12-27/68068771.jpg" alt="spilit"></p>
 <ul>
-<li>split text有几种模式可以选择，最让我开心的是可以每个字母都分割成list中的一个值，果断选择这个。</li>
-<li>然后就加入用户录入的部分了，没什么复杂的东西，按常规来就好了。唯一需要注意的就是加入一些逻辑判断（判断用户输入的值是否在答案中），防止出现index out of range的情况。</li>
+<li>split text有几种模式可以选择，其中有一个选项是把每个字母都分割成list中的一个值，果断选择这个。</li>
+</ul>
+<p><img src="http://oqi5hmt36.bkt.clouddn.com/17-12-27/7109361.jpg" alt="split2"></p>
+<ul>
+<li>然后就加入用户录入的部分了，询问用户要查询的题号，根据题号返回相应的结果并以Alert的方式告知用户。唯一需要注意的就是加入一些逻辑判断（判断用户输入的值是否在答案中），防止出现index out of range的情况。</li>
 </ul>
 <blockquote>
-<p><img src="http://i1.piimg.com/588926/f42d3d2edc3d0d21.png" alt="in"><br>注意顶端的repeat, 在我实际使用的时候发现每次查的时候都要点一下workflow，这样的操作就过于繁琐，于是我便加入了这个repeat这样我在不需要退出workflow的情况下就可以继续查下一个题了。</p>
+<p><img src="http://oqi5hmt36.bkt.clouddn.com/17-12-27/83244143.jpg" alt="in"><br>在我实际使用的时候发现每次查的时候都要点一下workflow，这样的操作就过于繁琐，于是我便加入了这个repeat这样我在不需要退出workflow的情况下就可以继续查下一个题了，提高学习效率。</p>
 </blockquote>
-<p><img src="http://i4.buimg.com/588926/0241d284ac7ef852.png" alt="if"></p>
+<p><img src="http://oqi5hmt36.bkt.clouddn.com/17-12-27/4124063.jpg" alt="if"></p>
 <ul>
 <li>将用户输入的值传给list, 查找所处index的值。最后再将查询到的值（答案）以alert的形式显示在用户的屏幕上。</li>
 </ul>
-<p><img src="http://i1.piimg.com/588926/3ab0aab1db97273f.png" alt=""></p>
+<p><img src="http://oqi5hmt36.bkt.clouddn.com/17-12-27/44091709.jpg" alt=""></p>
 <ul>
-<li>记得要设置几个变量，以便在alert中使用。</li>
+<li>记得要设置几个变量，以便在alert中调用。</li>
 </ul>
-<h1 id="实际运行"><a href="#实际运行" class="headerlink" title="实际运行"></a>实际运行</h1><p><img src="http://i4.buimg.com/588926/275d2412f1bbcc25.jpg" alt=""><br><img src="http://i1.piimg.com/588926/04c2ad139d9b5891.jpg" alt=""><br><img src="http://i1.piimg.com/588926/ced8a1a9ebbf760d.jpg" alt=""><br><img src="http://i4.buimg.com/588926/2be5da217298178d.jpg" alt=""></p>
-<h1 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h1><p>需要先安装iOS Workflow软件<br><a href="https://workflow.is/workflows/960b21ee81104e519e3296012374de18" target="_blank" rel="external">workflow练习答案速查</a></p>
+<h1 id="实际运行"><a href="#实际运行" class="headerlink" title="实际运行"></a>实际运行</h1><p><img src="http://oqi5hmt36.bkt.clouddn.com/17-12-27/46248641.jpg" alt=""><br><img src="http://oqi5hmt36.bkt.clouddn.com/17-12-27/53652226.jpg" alt=""><br><img src="http://oqi5hmt36.bkt.clouddn.com/17-12-27/82782751.jpg" alt=""></p>
+<h1 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h1><p>需要先安装iOS Workflow App<br><a href="https://workflow.is/workflows/960b21ee81104e519e3296012374de18" target="_blank" rel="external">workflow练习答案速查</a></p>
 
     
 
